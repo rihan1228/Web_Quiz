@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Master - Test Your Knowledge</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🧠 Quiz Master</h1>
+        
+        <!-- Home Screen -->
+        <div id="homeScreen" class="screen active">
+            <div class="progress-stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalQuizzes">0</div>
+                    <div class="stat-label">Quizzes Taken</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="averageScore">0%</div>
+                    <div class="stat-label">Average Score</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="bestCategory">-</div>
+                    <div class="stat-label">Best Category</div>
+                </div>
+            </div>
+            
+            <h2 style="text-align: center; margin-bottom: 30px; color: #333;">Choose a Category</h2>
+            <div class="categories">
+                <div class="category-card" onclick="startQuiz('science')">
+                    <h3>🔬 Science</h3>
+                    <p>Test your knowledge of physics, chemistry, and biology</p>
+                </div>
+                <div class="category-card" onclick="startQuiz('history')">
+                    <h3>🏛️ History</h3>
+                    <p>Journey through significant historical events and figures</p>
+                </div>
+                <div class="category-card" onclick="startQuiz('sports')">
+                    <h3>⚽ Sports</h3>
+                    <p>Challenge yourself with sports trivia and facts</p>
+                </div>
+                <div class="category-card" onclick="startQuiz('technology')">
+                    <h3>💻 Technology</h3>
+                    <p>Explore the world of computers and innovation</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="btn btn-secondary" onclick="showProgress()">View Progress History</button>
+            </div>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quizScreen" class="screen">
+            <div class="quiz-header">
+                <div class="quiz-info">
+                    <span id="categoryName"></span> Quiz
+                </div>
+                <div class="timer" id="timer">30s</div>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            
+            <div style="text-align: center; margin-bottom: 20px; color: #666;">
+                Question <span id="currentQuestion">1</span> of <span id="totalQuestions">10</span>
+            </div>
+            
+            <div class="question-card">
+                <div class="question" id="questionText"></div>
+                <div class="options" id="optionsContainer"></div>
+            </div>
+            
+            <div style="text-align: center;">
+                <button class="btn" id="nextBtn" onclick="nextQuestion()" disabled>Next Question</button>
+                <button class="btn btn-secondary" onclick="goHome()">Quit Quiz</button>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="resultsScreen" class="screen">
+            <div class="score-display">
+                <div class="score-circle" id="scoreCircle">0%</div>
+                <div class="score-text" id="scoreText"></div>
+                <div class="performance-message" id="performanceMessage"></div>
+                
+                <div class="progress-stats" style="margin: 30px 0;">
+                    <div class="stat-card">
+                        <div class="stat-number" id="correctAnswers">0</div>
+                        <div class="stat-label">Correct</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="incorrectAnswers">0</div>
+                        <div class="stat-label">Incorrect</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="timeTaken">0s</div>
+                        <div class="stat-label">Time Taken</div>
+                    </div>
+                </div>
+                
+                <div class="button-group">
+                    <button class="btn" onclick="startQuiz(currentCategory)">Try Again</button>
+                    <button class="btn btn-secondary" onclick="goHome()">Home</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Screen -->
+        <div id="progressScreen" class="screen">
+            <h2 style="text-align: center; margin-bottom: 30px; color: #333;">Progress History</h2>
+            <div id="progressHistory"></div>
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="btn btn-secondary" onclick="goHome()">Back to Home</button>
+                <button class="btn" onclick="clearProgress()">Clear History</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
